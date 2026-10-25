@@ -1,0 +1,30 @@
+# cfgaudit code scanning demo: every push and pull request is scanned and the
+# findings go to GitHub Code Scanning as SARIF.
+name: cfgaudit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions: {}
+
+jobs:
+  cfgaudit:
+    name: cfgaudit
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: cfgaudit/cfgaudit@d490362f1889e84c2704ae304a0e6bb1863697fa # v1.18.1
+        with:
+          format: sarif
+          output: cfgaudit.sarif
+          fail-on: never
+      - uses: github/codeql-action/upload-sarif@0fda7a646fd14a20daf520829ca1ae8847000819 # codeql-bundle-v2.27.3
+        with:
+          sarif_file: cfgaudit.sarif
