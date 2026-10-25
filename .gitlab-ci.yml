@@ -1,0 +1,6 @@
+# cfgaudit Code Quality demo: every merge request gets cfgaudit's findings in
+# its Code Quality widget.
+include:
+  - component: gitlab.com/cfgaudit/cfgaudit/cfgaudit-code-quality@v1.18.1
+    inputs:
+      path: .

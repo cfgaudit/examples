@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": ["Bash(npm test)", "Bash(git status)", "Bash(git diff:*)"],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(**/.env)",
+      "Read(//**/.ssh/**)",
+      "Read(//**/.aws/**)",
+      "Read(//**/.config/gcloud/**)",
+      "Read(//**/.azure/**)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/*.p12)",
+      "Read(**/*.pfx)",
+      "Read(**/*.jks)",
+      "Bash(rm *)",
+      "Bash(git push --force:*)"
+    ]
+  }
+}
